@@ -18,10 +18,10 @@
             @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsOpen)
+            @Html.DisplayNameFor(model => model.OpeningTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StoreRating)
+            @Html.DisplayNameFor(model => model.ClosingTime)
         </th>
         <th></th>
     </tr>
@@ -35,10 +35,10 @@
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsOpen)
+            @Html.DisplayFor(modelItem => item.OpeningTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StoreRating)
+            @Html.DisplayFor(modelItem => item.ClosingTime)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Eircode }) |

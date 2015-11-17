@@ -40,20 +40,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IsOpen, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OpeningTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsOpen)
-                    @Html.ValidationMessageFor(model => model.IsOpen, "", new { @class = "text-danger" })
-                </div>
+                @Html.EnumDropDownListFor(model => model.OpeningTime, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OpeningTime, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StoreRating, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ClosingTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StoreRating, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StoreRating, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.ClosingTime, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ClosingTime, "", new { @class = "text-danger" })
             </div>
         </div>
 

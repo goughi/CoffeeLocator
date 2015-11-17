@@ -10,107 +10,112 @@ using CoffeeApp.Models;
 
 namespace CoffeeApp.Controllers
 {
-    public class CoffeeStoresController : Controller
+    public class DrinksController : Controller
     {
         private DrinkContext db = new DrinkContext();
 
-        // GET: CoffeeStores
+        // GET: Drinks
         public ActionResult Index()
         {
-            return View(db.CoffeeStores.ToList());
+            var drinks = db.Drinks.Include(d => d.CoffeeStore);
+            return View(drinks.ToList());
         }
-
-        // GET: CoffeeStores/Details/5
-        public ActionResult Details(string id)
+     
+        // GET: Drinks/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoffeeStore coffeeStore = db.CoffeeStores.Find(id);
-            if (coffeeStore == null)
+            Drink drink = db.Drinks.Find(id);
+            if (drink == null)
             {
                 return HttpNotFound();
             }
-            return View(coffeeStore);
+            return View(drink);
         }
 
-        // GET: CoffeeStores/Create
+        // GET: Drinks/Create
         public ActionResult Create()
         {
+            ViewBag.Eircode = new SelectList(db.CoffeeStores, "Eircode", "StoreName");
             return View();
         }
 
-        // POST: CoffeeStores/Create
+        // POST: Drinks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Eircode,StoreName,Location,OpeningTime,ClosingTime")] CoffeeStore coffeeStore)
+        public ActionResult Create([Bind(Include = "DrinkID,DrinkName,DrinkSize,Price,Eircode")] Drink drink)
         {
             if (ModelState.IsValid)
             {
-                db.CoffeeStores.Add(coffeeStore);
+                db.Drinks.Add(drink);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(coffeeStore);
+            ViewBag.Eircode = new SelectList(db.CoffeeStores, "Eircode", "StoreName", drink.Eircode);
+            return View(drink);
         }
 
-        // GET: CoffeeStores/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Drinks/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoffeeStore coffeeStore = db.CoffeeStores.Find(id);
-            if (coffeeStore == null)
+            Drink drink = db.Drinks.Find(id);
+            if (drink == null)
             {
                 return HttpNotFound();
             }
-            return View(coffeeStore);
+            ViewBag.Eircode = new SelectList(db.CoffeeStores, "Eircode", "StoreName", drink.Eircode);
+            return View(drink);
         }
 
-        // POST: CoffeeStores/Edit/5
+        // POST: Drinks/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Eircode,StoreName,Location,OpeningTime,ClosingTime")] CoffeeStore coffeeStore)
+        public ActionResult Edit([Bind(Include = "DrinkID,DrinkName,DrinkSize,Price,Eircode")] Drink drink)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(coffeeStore).State = EntityState.Modified;
+                db.Entry(drink).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(coffeeStore);
+            ViewBag.Eircode = new SelectList(db.CoffeeStores, "Eircode", "StoreName", drink.Eircode);
+            return View(drink);
         }
 
-        // GET: CoffeeStores/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Drinks/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoffeeStore coffeeStore = db.CoffeeStores.Find(id);
-            if (coffeeStore == null)
+            Drink drink = db.Drinks.Find(id);
+            if (drink == null)
             {
                 return HttpNotFound();
             }
-            return View(coffeeStore);
+            return View(drink);
         }
 
-        // POST: CoffeeStores/Delete/5
+        // POST: Drinks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            CoffeeStore coffeeStore = db.CoffeeStores.Find(id);
-            db.CoffeeStores.Remove(coffeeStore);
+            Drink drink = db.Drinks.Find(id);
+            db.Drinks.Remove(drink);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
