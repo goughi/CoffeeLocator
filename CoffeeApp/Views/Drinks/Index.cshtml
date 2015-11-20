@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CoffeeApp.Models.Drink>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CoffeeStore.StoreName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DrinkName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DrinkSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoffeeStore.StoreName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DrinkName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DrinkSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DrinkID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DrinkID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DrinkID })
+        </td>
+    </tr>
+}
+
+</table>
