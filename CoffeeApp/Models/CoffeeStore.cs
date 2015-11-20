@@ -101,7 +101,7 @@ namespace CoffeeApp.Models
             }
         }
 
-       static void AddDrink(Drink drink)
+       public void AddDrink(Drink drink)
         {
             using (DrinkContext db = new DrinkContext())
             {
@@ -114,14 +114,34 @@ namespace CoffeeApp.Models
                 { Console.WriteLine(e.ToString()); }
             }
         }
+
+       public void AddReview(Review review)
+        {
+            using (DrinkContext db = new DrinkContext())
+            {
+                try
+                {
+                    db.Reviews.Add(review);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                { Console.WriteLine(e.ToString()); }
+            }
+        }
     }
     public class CodeFirstTest
     {
         static void main()
         {
-            DrinkRepository repository = new DrinkRepository();
-            CoffeeStore st1 = new CoffeeStore() { Eircode = "C15C98E", Location = "O' Connell St. Limerick", OpeningTime = OpeningHour.AM0700, ClosingTime = ClosingHour.PM1730, StoreName = "Starbucks" };
-            repository.AddStore(st1);
+            DrinkRepository repository = new DrinkRepository(); 
+            
+                CoffeeStore st1 = new CoffeeStore() { Eircode = "C15C98E", Location = "O' Connell St. Limerick", OpeningTime = OpeningHour.AM0700, ClosingTime = ClosingHour.PM1730, StoreName = "Starbucks" };
+                repository.AddStore(st1);
+                Drink latte = new Drink() { DrinkName = "Cafe Latte", DrinkID = 001, DrinkSize = DrinkSize.grande, Price = 3.40, CoffeeStore = st1, Eircode = "C15C98E" };
+                Review r1 = new Review() { ReviewID = 999, CustomerName = "mg1", Comment = "The coffee is way too expensive", Rating = Rating.two, CoffeeStore = st1, Eircode = "C15C98E" };
+            repository.AddDrink(latte);
+            repository.AddReview(r1);
+            
         }
     }
 }

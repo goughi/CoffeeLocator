@@ -2,7 +2,10 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
+.selectedrow 
+{ 
+    background-color: #a4d4e6; 
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

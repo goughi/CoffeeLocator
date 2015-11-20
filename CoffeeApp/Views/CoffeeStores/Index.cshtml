@@ -1,7 +1,7 @@
-﻿@model IEnumerable<CoffeeApp.Models.CoffeeStore>
+﻿@model CoffeeApp.ViewModels.CoffeeIndexData
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Coffee Stores";
 }
 
 <h2>Index</h2>
@@ -11,23 +11,34 @@
 </p>
 <table class="table">
     <tr>
+       
         <th>
-            @Html.DisplayNameFor(model => model.StoreName)
+            StoreName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            Location
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OpeningTime)
+           OpeningTime
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ClosingTime)
+           ClosingTime
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model)
+{
+    string selectedRow = "";
+    if (item == ViewBag.InstructorID)
+    {
+        selectedRow = "selectedrow";
+    }
+    <tr class="@selectedRow" valign="top">
+<tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Eircode)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.StoreName)
         </td>

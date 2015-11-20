@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CoffeeStore.cs" />
+    <Compile Include="Views\ViewModels\CoffeeIndexData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
