@@ -137,8 +137,8 @@ namespace CoffeeApp.Models
             
                 CoffeeStore st1 = new CoffeeStore() { Eircode = "C15C98E", Location = "O' Connell St. Limerick", OpeningTime = OpeningHour.AM0700, ClosingTime = ClosingHour.PM1730, StoreName = "Starbucks" };
                 repository.AddStore(st1);
-                Drink latte = new Drink() { DrinkName = "Cafe Latte", DrinkID = 001, DrinkSize = DrinkSize.grande, Price = 3.40, CoffeeStore = st1, Eircode = "C15C98E" };
-                Review r1 = new Review() { ReviewID = 999, CustomerName = "mg1", Comment = "The coffee is way too expensive", Rating = Rating.two, CoffeeStore = st1, Eircode = "C15C98E" };
+                Drink latte = new Drink() { DrinkName = "Cafe Latte", DrinkID = 001, DrinkSize = DrinkSize.grande, Price = 3.40, Eircode = st1.Eircode};
+                Review r1 = new Review() { ReviewID = 999, CustomerName = "mg1", Comment = "The coffee is way too expensive", Rating = Rating.two,  Eircode = st1.Eircode };
             repository.AddDrink(latte);
             repository.AddReview(r1);
             

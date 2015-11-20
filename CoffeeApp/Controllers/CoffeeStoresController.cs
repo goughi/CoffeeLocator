@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CoffeeApp.Models;
-using CoffeeApp.ViewModels;
 
 namespace CoffeeApp.Controllers
 {
@@ -18,28 +17,9 @@ namespace CoffeeApp.Controllers
         // GET: CoffeeStores
         public ActionResult Index()
         {
-            var coffeestores = db.CoffeeStores.Include(c => c.Reviews);
-
-            return View(coffeestores.ToList());
+            return View(db.CoffeeStores.ToList());
         }
-        public ActionResult Index(String eircode)
-        {
-            var viewModel = new CoffeeIndexData();
-            viewModel.CoffeeStores = db.CoffeeStores
 
-                .OrderBy(i => i.StoreName);
-
-            if (eircode.Count() > 0)
-            {
-                ViewBag.Eircode = eircode.ToUpper();
-                viewModel.Reviews = viewModel.CoffeeStores.Where(
-                    i => i.Eircode.ToUpper() == eircode.ToUpper()).Single().Reviews;
-            }
-
-
-
-            return View(viewModel);
-        }
         // GET: CoffeeStores/Details/5
         public ActionResult Details(string id)
         {
