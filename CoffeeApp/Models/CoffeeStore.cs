@@ -14,7 +14,7 @@ namespace CoffeeApp.Models
     }
     public enum ClosingHour
     {
-        [Display(Name = "4:00 PM")]PM1600 = 1600,
+        [Display(Name = "4:00 PM")]PM1600 = 1609,
         [Display(Name = "5:00 PM")]PM1700 = 1700,
         [Display(Name = "5:30 PM")]PM1730 = 1730,
         [Display(Name = "6:00 PM")]PM1800 = 1800,
